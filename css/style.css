@@ -66,7 +66,9 @@ a:hover {
   margin-bottom: 18px;
   text-transform: uppercase;
 }
-
+.logo {
+transform: scale(1.3)
+}
 .subtitle-des {
   color: #727272;
   font-size: 14px;
@@ -131,8 +133,8 @@ a:hover {
   background-size: cover;
   padding: 120px 0 25px 0;
   position: relative;
-  background: #02bdd5;
-  color: #fff;
+  background: #40e0d0;
+  color:  #fff;
 }
 
 .global-page-header h2 {
@@ -406,7 +408,9 @@ a:hover {
 #call-to-action .block .btn-contact i {
   margin-right: 10px;
 }
-
+.btn-contact {
+transform: scale(1.8)
+}
 #about {
   padding: 110px 0;
 }
@@ -449,15 +453,15 @@ a:hover {
 }
 
 .about-feature .about-feature-1 {
-  background: #02bdd5;
+  background: #40E0D0;
 }
 
 .about-feature .about-feature-2 {
-  background: #00B0C7;
+  background: #44CDBF;
 }
 
 .about-feature .about-feature-3 {
-  background: #00A6BB;
+  background: #45BFB2;
 }
 
 .works {
@@ -1191,7 +1195,10 @@ article {
   top: 45%;
   left: 13%;
 }
-
+.buttons {
+transform: scale(1.8);
+right: 30%;
+}
 #team {
   margin: 50px 0;
 }
