@@ -166,22 +166,5 @@ Global Page Section Start
 	<script src="plugins/facncybox/jquery.fancybox.js"></script>
 	<!-- template main js -->
 	<script src="js/main.js"></script>
-	<!-- post js -->
-	 <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-	 <script> 
-		 var client = contentful.createClient({
-			 space: '37t9ii6a91tt',
-			 accessToken: '3uiphLy7evyP1VHAcPmIDOjegq-tegOiYrucJlDCats',
-									                     });
-		 client
-		   .getEntries({
-			       content_type: 'posts',
-			     })
-		   .then(function (entries) {
-			       entries.items.forEach(function (entry, index) {
-				             console.log(entry);
-				           });
-			     });
-	 </script>
  	</body>
 </html>
