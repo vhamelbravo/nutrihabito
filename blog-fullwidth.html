@@ -201,36 +201,5 @@
 	<script src="plugins/facncybox/jquery.fancybox.js"></script>
 	<!-- template main js -->
 	<script src="js/main.js"></script>
-	<!-- blog js -->
-	<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-<script> 
-	var client = contentful.createClient({
-		        space: '37t9ii6a91tt',
-		        accessToken: '09908o-HMER9Ywp2WQNh7QO4t3nIlroXfB4Zti7i2k8',
-		    });
-
-	    client.getEntries({
-		            content_type: 'blogPginaPrincipal',
-		        }).then(function (entries) {
-				        entries.items.forEach(function (entry, index) {
-						            var postIndex = index + 1;
-
-						            var titleElements = document.getElementsByClassName("blogpost-title");
-						            var dateElements = document.getElementsByClassName("blogpost-date");
-						            var imageElements = document.getElementsByClassName("img-responsive");
-
-						            if (titleElements.length >= postIndex && entry.fields.textoPreview) {
-								                    titleElements[postIndex - 1].textContent = entry.fields.textoPreview;
-								                }
-						            if (dateElements.length >= postIndex && entry.fields.blogFecha) {
-								                    dateElements[postIndex - 1].textContent = entry.fields.blogFecha;
-								                }
-								                
-						            if (imageElements.length >= postIndex && entry.fields.imagen && entry.fields.imagen.fields.file.url) {
-								                    imageElements[postIndex - 1].src = `https:${entry.fields.imagen.fields.file.url}`;
-								                }
-						        });
-				    });
-	</script>
  	</body>
 </html>
