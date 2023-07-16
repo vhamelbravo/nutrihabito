@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" href="icon.png">
-        <title>Timer Agency Template</title>
+        <title id="page-title">Timer Agency Template</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -37,6 +37,17 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
+	<script
+		      src="https://cdn.jsdelivr.net/npm/contentful@7.0.5/dist/contentful.browser.min.js"
+		            charset="utf-8"
+		          ></script>
+	    <script>
+		          var exports = {}; // quick fix because 'exports' is not defined in rich-text bundle below
+			      </script>
+			          <script
+						        src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.es5.min.js"
+							      charset="utf-8"
+							          ></script>
     </head>
     <body>
 
@@ -93,9 +104,9 @@ Global Page Section Start
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
-                    <h2>Big Headline for Blog Post</h2>
+                    <h2 id="post-title">Big Headline for Blog Post</h2>
                     <div class="portfolio-meta">
-                        <span>Dec 11, 2020</span>
+                        <span id="post-date">Dec 11, 2020</span>
                     </div>
                 </div>
             </div>
@@ -109,9 +120,9 @@ Global Page Section Start
         <div class="row">
             <div class="col-md-12">
                 <div class="post-img">
-                    <img class="img-responsive" alt="" src="images/blog/post-1.jpg">
+                    <img id="post-img" class="img-responsive" alt="" src="images/blog/post-1.jpg">
                 </div>
-                <div class="post-content">
+                <div id="post-content" class="post-content">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas sit expedita, iusto repellendus cumque, officia architecto consequatur illo fuga eum sed ut autem eos voluptas. Nemo, a, rem! Atque quisquam aperiam eaque tenetur autem, soluta itaque omnis. Minus nesciunt, sint, animi illum quo ab voluptate esse delectus unde maiores iure, quasi a suscipit ipsam aliquid voluptatem. Perspiciatis eveniet, pariatur illum aut cum dolor neque consequatur error aliquid facilis in quasi temporibus assumenda tempore, doloremque autem saepe enim nihil. Voluptates asperiores ullam voluptate quas similique ratione quia hic, eum distinctio laboriosam, consectetur tempora voluptatibus optio natus cumque est necessitatibus dolore alias.
                     </p>
@@ -166,5 +177,35 @@ Global Page Section Start
 	<script src="plugins/facncybox/jquery.fancybox.js"></script>
 	<!-- template main js -->
 	<script src="js/main.js"></script>
+	<!-- blog post initialization js -->
+	<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+	<!-- blog post js -->	
+<script>
+	var client = contentful.createClient({
+		    space: '37t9ii6a91tt',
+		    accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
+		  });
+
+	  client.getEntries({
+		      content_type: 'blogPost',
+		    })
+	  .then(function(entries) {
+		      entries.items.forEach(function(entry) {
+			            var date = new Date(entry.fields.fecha);
+			            var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+			            console.log(entry);
+
+			            document.getElementById("post-title").textContent = entry.fields.titulo;
+			            document.getElementById("post-date").textContent = formattedDate;
+			            document.getElementById("post-img").src = `https:${entry.fields.imagen.fields.file.url}`;
+			              var content = documentToHtmlString(entry.fields.contenido);
+			      document.getElementById("post-content").innerHTML = content
+
+
+
+			          });
+		    });
+
+	</script>
  	</body>
 </html>
