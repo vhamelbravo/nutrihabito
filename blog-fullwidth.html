@@ -119,7 +119,7 @@
             <div class="col-md-12">
                 <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
                     <div class="blog-post-image">
-                        <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-1.jpg" alt="" /></a>
+                        <a href="#"><img class="img-responsive" src="images/blog/post-1.jpg" alt="" /></a>
                     </div>
                     <div class="blog-content">
                         <h2 class="blogpost-title">
@@ -128,7 +128,7 @@
                         <div class="blog-meta">
                             <p class="blogpost-date">Dec 11, 2020</p>
                         </div>
-                        <a href="single-post.html" class="btn btn-dafault btn-details">Continue Reading</a>
+			<a href="#" data-post-id="" class="btn btn-dafault btn-details">Lea Más</a>
                     </div>
                     
                 </article>
@@ -138,18 +138,18 @@
                     </div>
                     <div class="blog-content">
                         <h2 class="blogpost-title">
-                        <a href="post-fullwidth.html">Space shouldn’t be the final frontier</a>
+                        <a href="#">Space shouldn’t be the final frontier</a>
                         </h2>
                         <div class="blog-meta">
                             <p class="blogpost-date">Dec 11, 2020</p>
                         </div>
-                        <a href="single-post.html" class="btn btn-dafault btn-details">Continue Reading</a>
+			<a href="#" data-post-id=""  class="btn btn-dafault btn-details">Lea Más</a>
                     </div>
                     
                 </article>
                 <article class="wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">
                     <div class="blog-post-image">
-                        <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-3.jpg" alt="" /></a>
+                        <a href="#"><img class="img-responsive" src="images/blog/post-3.jpg" alt="" /></a>
                     </div>
                     <div class="blog-content">
                         <h2 class="blogpost-title">
@@ -158,7 +158,7 @@
                         <div class="blog-meta">
                             <p class="blogpost-date">Dec 11, 2020</p>
                         </div>
-                        <a href="single-post.html" class="btn btn-dafault btn-details">Continue Reading</a>
+			<a href="#" data-post-id=""  class="btn btn-dafault btn-details">Lea Más</a>
                     </div>
                     
                 </article>
@@ -205,27 +205,29 @@
 	<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 <script>
 	var client = contentful.createClient({
-		space: '37t9ii6a91tt',
-		accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
-	});
-	client.getEntries({
-		content_type: 'blogPost',
-	})
-		.then(function(entries) {
-			entries.items.forEach(function(entry, index) {
-				    var date = new Date(entry.fields.fecha);
-				    var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+		      space: '37t9ii6a91tt',
+		      accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
+		    });
 
-				    // Assuming unique identifiers for each element
-				    var titleElement = document.getElementsByClassName("blogpost-title")[index];
-				    var dateElement = document.getElementsByClassName("blogpost-date")[index];
-				    var imageElement = document.getElementsByClassName("img-responsive")[index];
+	    client.getEntries({
+		          content_type: 'blogPost',
+		        })
+	      .then(function(entries) {
+		              entries.items.forEach(function(entry, index) {
+				                var date = new Date(entry.fields.fecha);
+				                var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
 
-				    titleElement.textContent = entry.fields.titulo;
-				    dateElement.textContent = formattedDate;
-				    imageElement.src = `https:${entry.fields.imagen.fields.file.url}`;
-				  });
-		});
+				                var titleElement = document.getElementsByClassName("blogpost-title")[index];
+				                var dateElement = document.getElementsByClassName("blogpost-date")[index];
+				                var imageElement = document.getElementsByClassName("img-responsive")[index];
+				                var linkElement = document.getElementsByClassName("btn-details")[index];
+
+				                titleElement.textContent = entry.fields.titulo;
+				                dateElement.textContent = formattedDate;
+				                imageElement.src = `https:${entry.fields.imagen.fields.file.url}`;
+				                linkElement.href = `single-post.html?id=${entry.sys.id}`;
+				              });
+		            });
 				</script>
  	</body>
 </html>

@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" href="icon.png">
-        <title id="page-title">Timer Agency Template</title>
+        <title id="head-title">Timer Agency Template</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="author" content="">
@@ -181,31 +181,37 @@ Global Page Section Start
 	<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 	<!-- blog post js -->	
 <script>
-	var client = contentful.createClient({
-		    space: '37t9ii6a91tt',
-		    accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
-		  });
+	// Get the blog post ID from the query parameter in the URL
+	  const urlParams = new URLSearchParams(window.location.search);
+	  const postId = urlParams.get('id');
+
+	  var client = contentful.createClient({
+		      space: '37t9ii6a91tt',
+		      accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
+		    });
 
 	  client.getEntries({
 		      content_type: 'blogPost',
+		      'sys.id': postId // Filter entries by the specific post ID
 		    })
-	  .then(function(entries) {
-		      entries.items.forEach(function(entry) {
-			            var date = new Date(entry.fields.fecha);
-			            var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
-			            console.log(entry);
+	    .then(function(entries) {
+		          if (entries.items.length > 0) {
+				          var entry = entries.items[0]; // Retrieve the first matching entry
 
-			            document.getElementById("post-title").textContent = entry.fields.titulo;
-			            document.getElementById("post-date").textContent = formattedDate;
-			            document.getElementById("post-img").src = `https:${entry.fields.imagen.fields.file.url}`;
-			              var content = documentToHtmlString(entry.fields.contenido);
-			      document.getElementById("post-content").innerHTML = content
+				          var date = new Date(entry.fields.fecha);
+				          var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+				          console.log(entry);
 
-
-
-			          });
-		    });
-
+				          document.getElementById("post-title").textContent = entry.fields.titulo;
+				          document.getElementById("head-title").textContent = entry.fields.titulo;
+				          document.getElementById("post-date").textContent = formattedDate;
+				          document.getElementById("post-img").src = `https:${entry.fields.imagen.fields.file.url}`;
+				          var content = documentToHtmlString(entry.fields.contenido);
+				          document.getElementById("post-content").innerHTML = content;
+				        } else {
+						        console.log('Blog post not found');
+						      }
+		        });
 	</script>
  	</body>
 </html>
