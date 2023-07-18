@@ -683,6 +683,19 @@ figure figcaption p {
 #blog-full-width {
   padding: 40px 0 80px;
 }
+.blog-preview-img {
+min-width: 100%;
+max-height: 200px;
+object-fit: cover;
+}
+.blogpost-preview {
+max-height: 230px;
+overflow: hidden;
+}
+.blogpost-title {
+font-size: 5rem;
+font-weight: bold;
+}
 
 article {
   padding: 30px 0;
@@ -1211,7 +1224,8 @@ right: 30%;
 margin-left: 85px; 
 }
 .team_text {
-margin-left: 85px;
+margin-left: 30%;
+transform: scale(1.5);
 }
 
 .team-member:hover .team-img img {
@@ -1252,9 +1266,9 @@ margin-left: 85px;
   padding: 4px 12px;
 }
 .testimonial {
-width: 80%;
+width: 95%;
 margin: 20px auto;
-height: 300px;
+height: 700px;
 color: #FFF;
 font-size: 3rem;
 }
@@ -1285,19 +1299,28 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+.testimonial-pfp {
+margin-left: -1000px;
+}
+.testimonial-text {
+margin-right: 1000px;
+min-width: 80%;
+max-width: 80%;
+}
+
 .arrow {
 position: absolute;
-top: 80px;
+top: 300px;
 cursor: pointer;
 }
 .arrow:hover {
 opacity: 0.5;
 }
 .arrow.prev {
-left: 10px;
+left: 5px;
 }
 .arrow.next {
-right: 10px;
+right: 5px;
 }
 #footer {
   background: #fff;
@@ -1405,6 +1428,7 @@ px      68    160    252    344    436    528    620    712    */
 ---------------------------------------------
 cols    1     2      3
 px      68    160    252    */
+
 @media only screen and (max-width: 767px) {
   .title {
     font-size: 40px;
@@ -1489,7 +1513,105 @@ px      68    160    252    */
   .service-home {
     left: -10px;
 }
+#navbar-toggle-home {
+left: -50px;
 }
+}
+@media (min-width:768px) and (max-width:991px) {
+.logo {
+margin-top: -10px;
+}
+} 
+@media screen and (max-width: 459px) {
+	.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 20px;
+	margin-left: 50%;
+}
+}
+@media (min-width: 460px) and (max-width: 479px) {
+       .testimonial-pfp {
+       display: none;
+}
+       .testimonial-text {
+	font-size: 20px;
+        margin-left: 40%;
+}
+}
+@media (min-width: 480px) and (max-width: 503px) {
+	.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: 30%;
+        }
+}
+@media (min-width: 504px) and (max-width: 536px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: 20%;
+}
+}
+@media (min-width: 537px) and (max-width: 575px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: 5%;
+}
+}
+@media (min-width: 576px) and (max-width: 614px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: -10%;
+}
+}
+@media (min-width: 615px) and (max-width: 668px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: -20%;
+}
+}
+@media (min-width: 669px) and (max-width: 866px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: -55%;
+}
+}
+
+@media (min-width: 867px) and (max-width: 1000px) {
+.testimonial-pfp {
+	display: none;
+}
+        .testimonial-text {
+	font-size: 18px;
+	margin-left: -95%;
+}
+}
+@media (min-width: 1001px) and (max-width: 1920px) {
+
+        .testimonial-text {
+	margin-left: 5%;
+}
+}
+}
+
 
 /*		Wide Mobile Layout: 480px.
 		Gutters: 24px.

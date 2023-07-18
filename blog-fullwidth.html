@@ -37,6 +37,15 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/contentful@7.0.5/dist/contentful.browser.min.js" charset="utf-8"
+		                          ></script>
+	            <script>
+			                              var exports = {}; // quick fix because 'exports' is not defined in rich-text bundle below
+						                                    </script>
+										                                      <script
+															                                                              src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.es5.min.js"
+																						                                                                    charset="utf-8"
+																														                                                                      ></script>
     </head>
     <body>
 
@@ -113,75 +122,36 @@
 <!--=====================================
 =            Full Width Blog            =
 ======================================-->
-<section id="blog-full-width">
+ <section id="blog-full-width">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <article class="wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">
                     <div class="blog-post-image">
-                        <a href="#"><img class="img-responsive" src="images/blog/post-1.jpg" alt="" /></a>
+                        <a href="#"><img class="img-responsive blog-preview-img" src="" alt="" /></a>
                     </div>
                     <div class="blog-content">
                         <h2 class="blogpost-title">
-                        <a href="post-fullwidth.html">Space shouldn’t be the final frontier</a>
+				<a href="post-fullwidth.html"> </a>
                         </h2>
                         <div class="blog-meta">
-                            <p class="blogpost-date">Dec 11, 2020</p>
+                            <p class="blogpost-date"></p>
                         </div>
+			 <p class="blogpost-preview"> 
+			                                     </p>
 			<a href="#" data-post-id="" class="btn btn-dafault btn-details">Lea Más</a>
                     </div>
                     
                 </article>
-                <article class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">
-                    <div>
-                        <a href="post-fullwidth.html"><img class="img-responsive" src="images/blog/post-2.jpg" alt="" /></a>
-                    </div>
-                    <div class="blog-content">
-                        <h2 class="blogpost-title">
-                        <a href="#">Space shouldn’t be the final frontier</a>
-                        </h2>
-                        <div class="blog-meta">
-                            <p class="blogpost-date">Dec 11, 2020</p>
-                        </div>
-			<a href="#" data-post-id=""  class="btn btn-dafault btn-details">Lea Más</a>
-                    </div>
-                    
-                </article>
-                <article class="wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">
-                    <div class="blog-post-image">
-                        <a href="#"><img class="img-responsive" src="images/blog/post-3.jpg" alt="" /></a>
-                    </div>
-                    <div class="blog-content">
-                        <h2 class="blogpost-title">
-                        <a href="post-fullwidth.html">Space shouldn’t be the final frontier</a>
-                        </h2>
-                        <div class="blog-meta">
-                            <p class="blogpost-date">Dec 11, 2020</p>
-                        </div>
-			<a href="#" data-post-id=""  class="btn btn-dafault btn-details">Lea Más</a>
-                    </div>
-                    
-                </article>
-            </div>
+	    </div> 
         </div>
     </div>
-</section>
-
-            <!--
+</section> 
+        <!--
             ==================================================
             Footer Section Start
             ================================================== -->
-            <footer id="footer">
-		    <div class="container">
-			    <div class="col-md-8">
-				    <p class="copyright">Copyright: <span><script>document.write(new Date().getFullYear())</script></span> Design and Developed by <a href="" target="_blank">Vicente Hamel Bravo</a>. <br> 
-				    </p>
-			    </div>
-			    <div class="col-md-4">
-				    <!-- Social Media -->
-			    </div>
-		    </div>
-	    </footer> <!-- /#footer -->
+            
 	<!-- Template Javascript Files
 	================================================== -->
 	<!-- jquery -->
@@ -205,29 +175,44 @@
 	<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
 <script>
 	var client = contentful.createClient({
-		      space: '37t9ii6a91tt',
-		      accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
-		    });
+		    space: '37t9ii6a91tt',
+		    accessToken: '_IlVXZl8825rrpDm4ce3tG-48J5wgj3GCTzcE54j4Ck',
+	});
 
-	    client.getEntries({
-		          content_type: 'blogPost',
-		        })
-	      .then(function(entries) {
-		              entries.items.forEach(function(entry, index) {
-				                var date = new Date(entry.fields.fecha);
-				                var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+	var originalSection = document.getElementById("blog-full-width");
 
-				                var titleElement = document.getElementsByClassName("blogpost-title")[index];
-				                var dateElement = document.getElementsByClassName("blogpost-date")[index];
-				                var imageElement = document.getElementsByClassName("img-responsive")[index];
-				                var linkElement = document.getElementsByClassName("btn-details")[index];
+	client.getEntries({
+		    content_type: 'blogPost',
+	}).then(function(entries) {
+		    entries.items.forEach(function(entry, index) {
+			            if (index > 0) {
+					                var clonedSection = originalSection.cloneNode(true); // Clone the original section
+					                originalSection.parentNode.appendChild(clonedSection); // Append the cloned section to the parent element
+					            }
 
-				                titleElement.textContent = entry.fields.titulo;
-				                dateElement.textContent = formattedDate;
-				                imageElement.src = `https:${entry.fields.imagen.fields.file.url}`;
-				                linkElement.href = `single-post.html?id=${entry.sys.id}`;
-				              });
-		            });
+			            var date = new Date(entry.fields.fecha);
+			            var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+
+			            var sectionElement = index > 0 ? clonedSection : originalSection;
+
+			            var titleElement = sectionElement.querySelector(".blogpost-title");
+			            var dateElement = sectionElement.querySelector(".blogpost-date");
+			            var imageElement = sectionElement.querySelector(".blog-post-image img");
+			            var linkElement = sectionElement.querySelector(".btn-details");
+			            var contentElement = sectionElement.querySelector(".blogpost-preview");
+
+			            titleElement.textContent = entry.fields.titulo;
+			            dateElement.textContent = formattedDate;
+			            imageElement.src = `https:${entry.fields.imagen.fields.file.url}`;
+			            linkElement.href = `single-post.html?id=${entry.sys.id}`;
+			            contentElement.textContent = entry.fields.contenido;
+
+			            var content = documentToHtmlString(entry.fields.contenido);
+			            contentElement.innerHTML = content;
+			        });
+	}).catch(function(error) {
+		    console.log('Error retrieving blog posts:', error);
+	});
 				</script>
  	</body>
 </html>
