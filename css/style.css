@@ -359,7 +359,6 @@ margin-top: -65px;
   letter-spacing: normal;
   border-radius: 0;
 }
-
 #call-to-action {
   background: #1c998c;
   background-size: cover;
@@ -368,6 +367,18 @@ margin-top: -65px;
   text-align: center;
   position: relative;
   color: #fff;
+}
+.btn-contact-about {
+background: #737373;
+border: none;
+color: #fff;
+padding: 20px 35px;
+margin-top: 50px;
+font-size: 16px;
+line-height: 1em;
+text-transform: uppercase;
+letter-spacing: normal;
+border-radius: 0;
 }
 
 #call-to-action .block {
