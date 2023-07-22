@@ -1227,7 +1227,14 @@ margin-left: 85px;
 margin-left: 30%;
 transform: scale(1.5);
 }
-
+.about-text {
+transform: scale(1.2);
+margin-left: 10%;
+}
+.about-icon {
+height: 100px;
+width: 100px
+}
 .team-member:hover .team-img img {
   opacity: .8;
 }
