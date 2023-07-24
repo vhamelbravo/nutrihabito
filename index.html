@@ -34,6 +34,9 @@
         <!-- template main css file -->
         <link rel="stylesheet" href="css/style.css">
 	<!-- fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
@@ -96,10 +99,13 @@ Slider Section Start
                 <!-- Slider -->
                 <section class="cd-intro">
                     <h1 class="wow fadeInUp animated cd-headline slide" data-wow-delay=".4s" >
-                    <span>BIENVENIDOS A NUTRIHABITO </span>
+		<div class="slider-title">
+			<span>BIENVENIDOS A NUTRIHABITO <p class="slider-title-sub"> Por Nta. Pía Gonzalez Jara </p>  </span>
+		    </div>
                     </h1>
                     </section> <!-- cd-intro -->
                     <!-- /.slider -->
+		    <div>
                     <h2 class="intro-text wow fadeInUp animated" data-wow-delay=".6s" >
                         Bienvenid@ a un espacio donde la educación alimentaria, el mejorar
 			la relación con la alimentación y el conectarte con ella son primordial.
@@ -110,7 +116,10 @@ Slider Section Start
 			Recuerda que una buena nutrición es uno de los mejores autocuidados
 			que puedes hacer.
                     </h2>
+			    </div>
+			    <div class="contact-button-div">
                     <a class="btn-beg btn-lines dark light wow fadeInUp smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="contact.html" data-section="#works">Contacto </a>
+		    </div>
                 </div>
             </div>
         </div>
@@ -196,6 +205,7 @@ Portfolio Section Start
 	    ================================================== 
 	    Team Section Start
 	    ================================================== -->
+	    <div id="public">
 		     <div class="container">
 			     <div class="row">
 				     <h2 class="subtitle text-center">QUIENES PUEDEN TOMAR MIS SERVICIOS?</h2>
@@ -237,26 +247,14 @@ Portfolio Section Start
 				     </div>
 			     </div>
 		     </div>
+		     </div>
 	     </section>
+	     
 	     <!-- 
             =================================================
 	    Testimonials Start
 	    ================================================= -->
 
-	    <div class="testimonial">
-		    <div class="carousel">
-			    <div class="slider">
-				    <section> <h1 class="testimonial-text"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in magna aliquam, laoreet nibh id, aliquam massa. Suspendisse id ex nec lacus interdum finibus. Sed eu interdum sapien. Vestibulum pulvinar quam lectus, non feugiat justo mattis ac. Donec vel vulputate ex. Aenean iaculis placerat elit et semper."  <br> - Nombre Apellido </h1>  <img class="testimonial-pfp" src="images/review_pfp.png">  </section>				    				    <section> <h1 class="testimonial-text"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in magna aliquam, laoreet nibh id, aliquam massa. Suspendisse id ex nec lacus interdum finibus. Sed eu interdum sapien. Vestibulum pulvinar quam lectus, non feugiat justo mattis ac. Donec vel vulputate ex. Aenean iaculis placerat elit et semper."  <br> - Nombre Apellido </h1>  <img class="testimonial-pfp" src="images/review_pfp.png">  </section>
-				    <section> <h1 class="testimonial-text"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in magna aliquam, laoreet nibh id, aliquam massa. Suspendisse id ex nec lacus interdum finibus. Sed eu interdum sapien. Vestibulum pulvinar quam lectus, non feugiat justo mattis ac. Donec vel vulputate ex. Aenean iaculis placerat elit et semper."  <br> - Nombre Apellido </h1>  <img class="testimonial-pfp" src="images/review_pfp.png">  </section>
-				    <section> <h1 class="testimonial-text"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in magna aliquam, laoreet nibh id, aliquam massa. Suspendisse id ex nec lacus interdum finibus. Sed eu interdum sapien. Vestibulum pulvinar quam lectus, non feugiat justo mattis ac. Donec vel vulputate ex. Aenean iaculis placerat elit et semper."  <br> - Nombre Apellido </h1>  <img class="testimonial-pfp" src="images/review_pfp.png">   </section>
-				    <section> <h1 class="testimonial-text"> "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in magna aliquam, laoreet nibh id, aliquam massa. Suspendisse id ex nec lacus interdum finibus. Sed eu interdum sapien. Vestibulum pulvinar quam lectus, non feugiat justo mattis ac. Donec vel vulputate ex. Aenean iaculis placerat elit et semper."  <br> - Nombre Apellido </h1>  <img class="testimonial-pfp" src="images/review_pfp.png">  </section>
-			    </div>
-			    <div class="controls">
-				    <span class="arrow prev"><img src="images/left-arrow.png">  </span>
-				    <span class="arrow next"><img src="images/right-arrow.png">  </span>
-				    </div>
-			 </div>
-		    </div>
         <!--
             ==================================================
             Call To Action Section Start
@@ -313,35 +311,6 @@ Portfolio Section Start
 	<script src="js/main.js"></script>
 	<!-- testimonial slider js -->
 	<script>
-		const slider = document.querySelector(".slider");
-		const carousel = document.querySelector(".carousel");
-		const prev = document.querySelector(".prev");
-		const next = document.querySelector(".next");
-
-		var direction;
-
-		prev.addEventListener("click", function() {
-			  direction = 1;
-			  slider.style.transform = "translate(20%)";
-		});
-
-		next.addEventListener("click", function() {
-			  direction = -1;
-			  slider.style.transform = "translate(-20%)";
-		});
-
-		slider.addEventListener("transitionend", function() {
-			  if (direction === 1) {
-				      slider.prepend(slider.lastElementChild);
-				    } else if (direction === -1) {
-					        slider.appendChild(slider.firstElementChild);
-					      }
-			  slider.style.transition = "none";
-			  slider.style.transform = "translate(0)";
-			  setTimeout(function() {
-				      slider.style.transition = "all 0.5s";
-				    });
-		});
 		</script>
  	</body>
 </html>
