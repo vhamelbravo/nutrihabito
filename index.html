@@ -7,9 +7,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="icon" href="icon.png">
         <title>Nutrihabito </title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="author" content="">
         <!-- Mobile Specific Metas
         ================================================== -->
         <meta name="format-detection" content="telephone=no">
@@ -40,6 +37,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pompiere&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+	<!-- slider css .-->
     </head>
     <body>
 
@@ -254,6 +253,44 @@ Portfolio Section Start
             =================================================
 	    Testimonials Start
 	    ================================================= -->
+	    <div class="testimonial-container">
+	    <div class="testimonial-wrapper">
+		          <i id="arrow-left" class="fa-solid fa-angle-left"></i>
+		    <ul class="testimonial-carousel">
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 1</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta. </p>
+			    </li>
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 2</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta.  </p>
+			    </li>
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 3</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta. </p>
+			    </li>
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 4</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta. </p>
+			    </li>
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 5</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta.  </p>
+			    </li>
+			    <li class="review">
+				    <div class="review-img"><img src="images/review_pfp.png" alt="img" draggable="false"></div>
+				    <h2>Nombre Apellido 6</h2>
+				    <p> Nulla consequat nibh sed mattis congue. habitasse platea dictumst. Donec rutrum bibendum ligula, in suscipit elit tristique eget. Curabitur luctus ut tellus vel varius. Praesent ut dapibus orci. Integer tempor sodales nulla vitae porta.  </p>
+			    </li>
+		    </ul>
+		          <i id="arrow-right" class="fa-solid fa-angle-right"></i>
+	    </div>
+	    </div>
 
         <!--
             ==================================================
@@ -297,20 +334,82 @@ Portfolio Section Start
 	<!-- Form Validation -->
     <script src="plugins/form-validation/jquery.form.js"></script> 
     <!--  <script src="plugins/form-validation/jquery.validate.min.js"></script> -->
-	<!-- owl carouserl js -->
-	<script src="plugins/owl-carousel/owl.carousel.min.js"></script>
 	<!-- bootstrap js -->
 	<script src="plugins/bootstrap/bootstrap.min.js"></script>
 	<!-- wow js -->
 	<script src="plugins/wow-js/wow.min.js"></script>
-	<!-- slider js -->
-	<script src="plugins/slider/slider.js"></script>
 	<!-- Fancybox -->
 	<script src="plugins/facncybox/jquery.fancybox.js"></script>
 	<!-- template main js -->
 	<script src="js/main.js"></script>
 	<!-- testimonial slider js -->
 	<script>
-		</script>
+		const wrapper = document.querySelector(".testimonial-wrapper");
+		const carousel = document.querySelector(".testimonial-carousel");
+		const firstCardWidth = carousel.querySelector(".review").offsetWidth;
+		const arrowBtns = document.querySelectorAll(".testimonial-wrapper i");
+		const carouselChildrens = [...carousel.children];
+		let isDragging = false, isAutoPlay = true, startX, startScrollLeft, timeoutId;
+		// Get the number of cards that can fit in the carousel at once
+		let cardPerView = Math.round(carousel.offsetWidth / firstCardWidth);
+		// Insert copies of the last few cards to beginning of carousel for infinite scrolling
+		carouselChildrens.slice(-cardPerView).reverse().forEach(card => {
+			    carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+		});
+		// Insert copies of the first few cards to end of carousel for infinite scrolling
+		carouselChildrens.slice(0, cardPerView).forEach(card => {
+			    carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+		});
+		// Scroll the carousel at appropriate postition to hide first few duplicate cards on Firefox
+		carousel.classList.add("no-transition");
+		carousel.scrollLeft = carousel.offsetWidth;
+		carousel.classList.remove("no-transition");
+		// Add event listeners for the arrow buttons to scroll the carousel left and right
+		arrowBtns.forEach(btn => {
+			    btn.addEventListener("click", () => {
+				            carousel.scrollLeft += btn.id == "arrow-left" ? -firstCardWidth : firstCardWidth;
+				        });
+		});
+		const dragStart = (e) => {
+			    isDragging = true;
+			    carousel.classList.add("dragging");
+			    // Records the initial cursor and scroll position of the carousel
+			    startX = e.pageX;
+			    startScrollLeft = carousel.scrollLeft;
+		}
+		const dragging = (e) => {
+			    if(!isDragging) return; // if isDragging is false return from here
+			    // Updates the scroll position of the carousel based on the cursor movement
+			    carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+		}
+		const dragStop = () => {
+			    isDragging = false;
+			    carousel.classList.remove("dragging");
+		}
+		const infiniteScroll = () => {
+			    // If the carousel is at the beginning, scroll to the end
+			    if(carousel.scrollLeft === 0) {
+				            carousel.classList.add("no-transition");
+				            carousel.scrollLeft = carousel.scrollWidth - (2 * carousel.offsetWidth);
+				            carousel.classList.remove("no-transition");
+				        }
+			    // If the carousel is at the end, scroll to the beginning
+			    else if(Math.ceil(carousel.scrollLeft) === carousel.scrollWidth - carousel.offsetWidth) {
+				            carousel.classList.add("no-transition");
+				            carousel.scrollLeft = carousel.offsetWidth;
+				            carousel.classList.remove("no-transition");
+				        }
+			    // Clear existing timeout & start autoplay if mouse is not hovering over carousel
+			    clearTimeout(timeoutId);
+			    if(!wrapper.matches(":hover")) autoPlay();
+		}
+		autoPlay();
+		carousel.addEventListener("mousedown", dragStart);
+		carousel.addEventListener("mousemove", dragging);
+		document.addEventListener("mouseup", dragStop);
+		carousel.addEventListener("scroll", infiniteScroll);
+		wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+		wrapper.addEventListener("mouseleave", autoPlay);
+	</script>
  	</body>
 </html>
