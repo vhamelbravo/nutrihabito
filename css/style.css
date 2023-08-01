@@ -444,6 +444,9 @@ background: url("../images/background-2.png");
   font-weight: 700;
   margin-bottom: 15px;
 }
+.intro-text {
+margin-left: -50px;
+}
 .slider-title {
 display: flex;
 justify-content: flex-start;
