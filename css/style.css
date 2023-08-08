@@ -683,6 +683,9 @@ flex-direction: column;
 .service-icons:hover {
 opacity: 0.5;
 }
+.service-link {
+color: black;
+}
  
 
 figure .img-wrapper {
