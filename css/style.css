@@ -86,6 +86,7 @@ margin-top: -65px;
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	background: url("../images/background-1.png")
 }
 .testimonial-wrapper {
 	max-width: 1100px;
@@ -114,10 +115,10 @@ margin-top: -65px;
 			  transform: translateY(-50%) scale(0.85);
 		  }
 		  .testimonial-wrapper i:first-child{
-			  left: -22px;
+			  left: -80px;
 		  }
 		  .testimonial-wrapper i:last-child{
-			  right: -22px;
+			  right: -80px;
 		  }
 		  .testimonial-wrapper .testimonial-carousel{
 			  display: grid;
@@ -452,7 +453,7 @@ background: url("../images/background-2.png");
   margin-bottom: 15px;
 }
 .intro-text {
-margin-left: -50px;
+margin-left: -100px;
 }
 .slider-title {
 display: flex;
@@ -473,7 +474,7 @@ margin-right: 30%;
 }
 
 #hero-area h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 300;
   margin-bottom: 38px;
   line-height: 27px;
@@ -496,6 +497,7 @@ margin-right: 30%;
   border-radius: 0;
 }
 #call-to-action {
+  background: url("../images/background-1.png");
   background-size: cover;
   background-attachment: fixed;
   padding: 80px 0;
@@ -669,6 +671,9 @@ display: flex;
 align-items: flex-start;
 margin-bottom: 20px;
 }
+.service-item:hover {
+opacity: 0.5;
+}
 
 .service-item-3 {
 margin-top: -110px;
@@ -681,13 +686,7 @@ margin-right: 20px;
 display: flex;
 flex-direction: column;
 }
-.service-icons:hover {
-border: 1px solid black;
-transition: border 0.3s ease-in-out;
-}
-.service-icons:hover {
-opacity: 0.5;
-}
+
 .service-link {
 color: black;
 }
@@ -1577,12 +1576,19 @@ px      68    160    252    */
   .title {
     font-size: 40px;
   }
+  .review-img {
+	  margin-top: 200px;
+}
   .navbar-header .navbar-brand a {
     padding: 6px 8px;
   }
   #hero-area {
     padding: 140px 0;
+    background: white;
   }
+  .testimonial-container {
+  display: none;
+}
   #hero-area .btn {
     margin-top: 8px;
   }
