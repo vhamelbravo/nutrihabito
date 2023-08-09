@@ -669,15 +669,15 @@ left: 20%;
 .service-item {
 display: flex;
 align-items: flex-start;
-margin-bottom: 20px;
+border: .5px solid transparent;
+transition: transform 0.3s border 0.3s;
 }
 .service-item:hover {
 opacity: 0.5;
+transform: scale(1.05);
+border: .5px solid black;
 }
 
-.service-item-3 {
-margin-top: -110px;
-}
 .service-item img {
 max-width: 100px;
 margin-right: 20px;
