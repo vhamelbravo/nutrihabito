@@ -420,7 +420,7 @@ background: url("../images/background-2.png");
 }
 
 #hero-area {
-  background: url("../images/slider.jpg") no-repeat ;
+  background: url("../images/slider.png") no-repeat ;
   background-size: 105% 90%;
   background-position: left;
   background-attachment: fixed;
